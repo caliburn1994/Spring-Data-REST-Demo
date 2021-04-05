@@ -1,9 +1,3 @@
-plugins {
-	id 'org.springframework.boot' version "${springBootVersion}"
-	id 'io.spring.dependency-management' version "${springDependencyManagement}"
-	id 'java'
-}
-
 ext {
     // test
     testcontainersVersion = "1.15.0"
