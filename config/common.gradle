@@ -5,3 +5,10 @@ ext {
     springBootVersion = '2.4.2'
     springDependencyManagement = '1.0.10.RELEASE'
 }
+
+repositories {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+    gradlePluginPortal()
+}
