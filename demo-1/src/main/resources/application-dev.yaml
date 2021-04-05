@@ -11,6 +11,8 @@ spring:
 # https://stackoverflow.com/questions/30118683/how-to-log-sql-statements-in-spring-boot
 logging.level.org.hibernate.SQL: DEBUG
 logging.level.org.hibernate.type: TRACE
+logging.level.web: debug
+logging.level.icu.kyakya: debug
 spring.jpa.properties.hibernate.format_sql: true
 
 

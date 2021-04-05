@@ -31,8 +31,6 @@ dependencies {
 
     // db
     runtimeOnly 'org.postgresql:postgresql'
-
-
 }
 
 

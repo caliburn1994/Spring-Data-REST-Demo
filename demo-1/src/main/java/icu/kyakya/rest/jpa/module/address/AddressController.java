@@ -65,11 +65,11 @@ public class AddressController {
         Iterable<Address> addresses = repo.saveAll(data);
 
         ArrayList<EntityModel<Address>> models = new ArrayList<>();
-        addresses.forEach(i->{
+        addresses.forEach(i -> {
             Link link = entityLinks.linkToItemResource(Address.class, i.getId()).withRel("self");
             models.add(EntityModel.of(i).add(link));
         });
-        return new ResponseEntity<>(CollectionModel.of(models),HttpStatus.CREATED);
+        return new ResponseEntity<>(CollectionModel.of(models), HttpStatus.CREATED);
     }
 
 
