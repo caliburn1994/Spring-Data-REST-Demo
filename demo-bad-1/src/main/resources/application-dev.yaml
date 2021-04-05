@@ -1,0 +1,17 @@
+spring:
+  config:
+    import: db/db-dev.properties
+  jpa:
+    # auto create table when startup, delete when shutdown app.
+    # below config doesn't work when with javax.persistence.schema-generation.
+    generate-ddl: true
+    hibernate.ddl-auto: none
+
+# show SQL
+# https://stackoverflow.com/questions/30118683/how-to-log-sql-statements-in-spring-boot
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.type: TRACE
+spring.jpa.properties.hibernate.format_sql: true
+
+
+

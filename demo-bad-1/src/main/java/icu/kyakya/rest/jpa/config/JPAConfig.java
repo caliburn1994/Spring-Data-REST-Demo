@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @Configuration
 @EnableJpaAuditing
-public class PersistenceConfig {
+public class JPAConfig {
 
 
     // https://docs.spring.io/spring-hateoas/docs/current/reference/html/#server.processors

@@ -1,0 +1,18 @@
+# about how to config Multi-profile
+# https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-file-activation-properties
+
+# about how to config profile specific files
+# https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-files-profile-specific
+spring:
+  profiles.active: dev
+  data.rest.basePath: /api
+  main:
+    allow-bean-definition-overriding: true
+
+app.version.address:
+    v1:
+      - people
+    v2:
+      - people
+    all:
+      - address

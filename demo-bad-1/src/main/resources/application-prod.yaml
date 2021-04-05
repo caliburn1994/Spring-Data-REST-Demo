@@ -1,0 +1,13 @@
+spring:
+  config:
+    import: db/db-dev.properties
+  jpa:
+    # https://www.baeldung.com/spring-data-jpa-generate-db-schema
+    # generate SQL script by Java code.
+    properties:
+      javax.persistence.schema-generation:
+        scripts:
+          action: create
+          create-source: metadata
+          create-target: web/rest-jpa/create.sql
+      hibernate.hbm2ddl.delimiter: ;
