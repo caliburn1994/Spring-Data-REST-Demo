@@ -4,19 +4,30 @@ import icu.kyakya.rest.jpa.model.basic.Bulk;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
+import org.springframework.data.rest.webmvc.RootResourceInformation;
 import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.MediaTypes;
+import org.springframework.hateoas.mediatype.alps.*;
 import org.springframework.hateoas.server.ExposesResourceFor;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.MediaTypes.ALPS_JSON_VALUE;
+import static org.springframework.hateoas.mediatype.PropertyUtils.getExposedProperties;
+import static org.springframework.hateoas.mediatype.alps.Alps.doc;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @BasePathAwareController  // if base url exists, it needs to be added
 @RepositoryRestController
@@ -70,6 +81,42 @@ public class AddressController {
             models.add(EntityModel.of(i).add(link));
         });
         return new ResponseEntity<>(CollectionModel.of(models), HttpStatus.CREATED);
+    }
+
+
+    /**
+     * something like /profile/address
+     *
+     * @see <a href="https://docs.spring.io/spring-hateoas/docs/current/reference/html/#reference">spring-hateoas</a>
+     * @see org.springframework.data.rest.webmvc.alps.AlpsController#descriptor(RootResourceInformation)
+     *
+     */
+    @RequestMapping(value = "/profile/address/add", method = GET,
+            produces = { MediaType.ALL_VALUE, MediaTypes.ALPS_JSON_VALUE })
+    public HttpEntity<?> docAdd() {
+        Alps build = Alps.alps() //
+                .doc(doc() //
+                        .href("https://example.org/samples/full/doc.html") //
+                        .value("value goes here") //
+                        .format(Format.TEXT) //
+                        .build()) //
+                .descriptor(getExposedProperties(Address.class).stream() //
+                        .map(property -> Descriptor.builder() //
+                                .id("class field [" + property.getName() + "]") //
+                                .name(property.getName()) //
+                                .type(Type.SEMANTIC) //
+                                .ext(Ext.builder() //
+                                        .id("ext [" + property.getName() + "]") //
+                                        .href("https://example.org/samples/ext/" + property.getName()) //
+                                        .value("value goes here") //
+                                        .build()) //
+                                .rt("rt for [" + property.getName() + "]") //
+                                .descriptor(Collections.singletonList(Descriptor.builder().id("embedded").build())) //
+                                .build()) //
+                        .collect(Collectors.toList()))
+                .build();
+
+        return new ResponseEntity<>(build, HttpStatus.OK);
     }
 
 

@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.Description;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,17 +17,19 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "address", path = "address")
 public interface AddressRepository extends PagingAndSortingRepository<Address, Long> {
 
+
+
     /*
-    test data:
-        curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Tokyo" }'   		http://localhost:8080/api/v1/address
-        curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Osaka" }'   		http://localhost:8080/api/v1/address
-        curl -i -H "Content-Type:application/json" -d '  { "country" : "China" , "city" : "Guangzhou" }'    http://localhost:8080/api/v1/address
+        test data:
+            curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Tokyo" }'   		http://localhost:8080/api/v1/address
+            curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Osaka" }'   		http://localhost:8080/api/v1/address
+            curl -i -H "Content-Type:application/json" -d '  { "country" : "China" , "city" : "Guangzhou" }'    http://localhost:8080/api/v1/address
 
 
-        curl -i -H "Content-Type:application/json" -d '  [{ "country" : "Japan" , "city" : "Tokyo" },{ "country" : "Japan" , "city" : "Osaka" }]'   \
-        		http://localhost:8080/api/v1/address
+            curl -i -H "Content-Type:application/json" -d '  [{ "country" : "Japan" , "city" : "Tokyo" },{ "country" : "Japan" , "city" : "Osaka" }]'   \
+                    http://localhost:8080/api/v1/address
 
-     */
+         */
 
 
     // find...
@@ -62,7 +65,12 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
     //  @Modifying
     //  @Query("delete ...")
     @Transactional
+    @RestResource(description = @Description("delete all addresses based on the given city"))
     Long deleteAllByCity(String city);
+
+    @RestResource(description = @Description("test delete")) // todo not work
+    @Override
+    void delete(Address entity);
 
     /*
     update

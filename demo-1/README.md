@@ -18,13 +18,13 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
 - [ ] database
 
   - [ ] table
-  - [x] [field] updated at && created at
+  - [x] field
+    - [x]  updated at && created at
+    - [x] how long? big large?
   - [ ] CRUD
 
-    - [ ] update
+    - [x] update
     - [ ] update if not found
-
-- [ ] field type. how long? big large?
 
 - [ ] foreign key
 
@@ -44,9 +44,9 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
 
 - [x] Show SQL in log file.
 
-- [ ] primary key? what's difference every type
+- [x] primary key? what's difference every type
 
-- [x] api version 1 version 2
+- [ ] api version 1 version 2
 
 - [ ] page
 
