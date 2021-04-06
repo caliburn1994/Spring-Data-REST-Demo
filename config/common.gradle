@@ -1,6 +1,6 @@
 ext {
     // test
-    testcontainersVersion = '1.5.2'
+    testcontainersVersion = '1.15.2'
     // spring
     springBootVersion = '2.4.4'
     springDependencyManagement = '1.0.11.RELEASE'
@@ -15,3 +15,23 @@ repositories {
     gradlePluginPortal()
 }
 
+
+apply plugin: 'idea'
+idea.module.downloadJavadoc = true
+idea.module.downloadSources = true
+
+apply plugin: 'eclipse'
+eclipse.classpath.downloadJavadoc = true
+eclipse.classpath.downloadSources = true
+
+
+// config of gradle
+// https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper
+wrapper {
+    jarFile = file(System.getProperty("user.dir") + '/gradle/wrapper/gradle-wrapper.jar')
+    gradleVersion = '6.7.1'
+}
+
+
+apply plugin: 'java'
+java.toolchain.languageVersion = JavaLanguageVersion.of(15)  // JDK version
