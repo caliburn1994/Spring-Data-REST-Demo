@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @ControllerAdvice
-public class AllEntityBodyAdvice implements ResponseBodyAdvice<PagedModel> {
+public class AllEntityBodyAdvice implements ResponseBodyAdvice {
 
     @Value("${spring.data.rest.basePath}")
     String basePath;
@@ -26,6 +26,17 @@ public class AllEntityBodyAdvice implements ResponseBodyAdvice<PagedModel> {
     public boolean supports(@NonNull MethodParameter returnType, @NonNull Class converterType) {
         System.out.println("In supports() method of " + getClass().getSimpleName());
         return true;
+    }
+
+    @Override
+    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+        System.out.println("In beforeBodyWrite() method of " + getClass().getSimpleName());
+
+        if (Objects.equals(request.getMethod(), HttpMethod.GET)) {
+            modifyHateoas(body, request);
+        }
+
+        return body;
     }
 
     private void modifyHateoas(Object body, ServerHttpRequest request) {
@@ -37,14 +48,5 @@ public class AllEntityBodyAdvice implements ResponseBodyAdvice<PagedModel> {
         }
     }
 
-    @Override
-    public PagedModel beforeBodyWrite(PagedModel body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        System.out.println("In beforeBodyWrite() method of " + getClass().getSimpleName());
 
-        if (Objects.equals(request.getMethod(), HttpMethod.GET)) {
-            modifyHateoas(body, request);
-        }
-
-        return body;
-    }
 }
