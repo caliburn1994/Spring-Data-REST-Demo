@@ -1,0 +1,1 @@
+This package is for generating Rest Doc by Spring Rest Doc.
