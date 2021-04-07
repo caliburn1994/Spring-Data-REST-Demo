@@ -15,21 +15,33 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
 
 ## How to define tables? 
 
-- [ ] database
+- [ ] Database
 
-  - [ ] table
+  - [x] create a table
   - [x] field
     - [x]  updated at && created at
     - [x] how long? big large?
   - [ ] CRUD
-
+  - [x] Insert
+    - [x] batch insert
     - [x] update
     - [ ] update if not found
+  - [ ] Key
+    - [x] foreign key
+
+- [x] Documentation 
+
+  - [x] Spring Rest Doc. See: `GettingStartedDocumentation`
+
+- [x] HATEOAS
+
+  - [x] entity description. See: `rest-messages.properties`
+  - [x] method description. See: `AllEntityBodyAdvice`
 
 - [ ] foreign key
 
   - [x] create
-  - [ ] query
+  - [ ] 
 
 - [ ] SQL语句
 
@@ -50,11 +62,11 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
 
 - [ ] page
 
-- [ ] batch insert by post
+- [ ] RepositorySearchController
 
-- [ ] batch update by put
+- [ ] Unit Test
 
-- [] RepositorySearchController
+
 
 ### ID
 

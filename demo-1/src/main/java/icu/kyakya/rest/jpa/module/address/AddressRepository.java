@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.Description;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -21,12 +22,12 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
 
     /*
         test data:
-            curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Tokyo" }'   		http://localhost:8080/api/v1/address
-            curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Osaka" }'   		http://localhost:8080/api/v1/address
-            curl -i -H "Content-Type:application/json" -d '  { "country" : "China" , "city" : "Guangzhou" }'    http://localhost:8080/api/v1/address
+            curl -i -X POST  -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Tokyo" }'   		http://localhost:8080/api/v1/address
+            curl -i -X POST  -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Osaka" }'   		http://localhost:8080/api/v1/address
+            curl -i -X POST  -H "Content-Type:application/json" -d '  { "country" : "China" , "city" : "Guangzhou" }'    http://localhost:8080/api/v1/address
 
 
-            curl -i -H "Content-Type:application/json" -d '  [{ "country" : "Japan" , "city" : "Tokyo" },{ "country" : "Japan" , "city" : "Osaka" }]'   \
+            curl -i -X POST  -H "Content-Type:application/json" -d '  [{ "country" : "Japan" , "city" : "Tokyo" },{ "country" : "Japan" , "city" : "Osaka" }]'   \
                     http://localhost:8080/api/v1/address
 
          */
@@ -70,7 +71,7 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
 
     @RestResource(description = @Description("test delete")) // todo not work
     @Override
-    void delete(Address entity);
+    void delete(@NonNull Address entity);
 
     /*
     update
