@@ -24,7 +24,7 @@ public class Person extends AuditMetadata {
     private String firstName;
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // orphanRemoval=true :when remove person,address will also be removed
     private List<Address> address;
 
 }
