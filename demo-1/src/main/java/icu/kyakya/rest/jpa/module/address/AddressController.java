@@ -16,8 +16,10 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +29,7 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.MediaTypes.ALPS_JSON_VALUE;
 import static org.springframework.hateoas.mediatype.PropertyUtils.getExposedProperties;
 import static org.springframework.hateoas.mediatype.alps.Alps.doc;
+import static org.springframework.hateoas.mediatype.alps.Alps.ext;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @BasePathAwareController  // if base url exists, it needs to be added
@@ -82,6 +85,34 @@ public class AddressController {
         });
         return new ResponseEntity<>(CollectionModel.of(models), HttpStatus.CREATED);
     }
+
+    /**
+     *
+     * curl -i -X POST -H "Content-Type:application/json" -d  '{ "bulk": [ {"country" : "Japan" , "city" : "xxx1" }, {"country" : "Japan" , "city" : "xxx2" }]} '   http://localhost:8080/api/v1/address/testTransaction
+     *
+     * test transaction
+     */
+    @Transactional(rollbackFor = {Exception.class})
+    @PostMapping("/address/testTransaction")
+    public ResponseEntity<CollectionModel<EntityModel<Address>>> saveException(@RequestBody EntityModel<Bulk<Address>> bulk) throws SQLException {
+        List<Address> data = Objects.requireNonNull(bulk.getContent()).getBulk();
+
+        Address save = repo.save(data.get(0));
+
+        if (save != null) {
+            throw new SQLException();
+        }
+
+        Iterable<Address> addresses = repo.saveAll(data);
+
+        ArrayList<EntityModel<Address>> models = new ArrayList<>();
+        addresses.forEach(i -> {
+            Link link = entityLinks.linkToItemResource(Address.class, i.getId()).withRel("self");
+            models.add(EntityModel.of(i).add(link));
+        });
+        return new ResponseEntity<>(CollectionModel.of(models), HttpStatus.CREATED);
+    }
+
 
 
     /**
