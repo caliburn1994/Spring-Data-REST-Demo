@@ -1,15 +1,12 @@
 package icu.kyakya.rest.jpa.hateoas;
 
-import icu.kyakya.rest.jpa.module.address.Address;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.MethodParameter;
-import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -29,7 +26,7 @@ public class AllEntityBodyAdvice implements ResponseBodyAdvice {
     }
 
     @Override
-    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+    public Object beforeBodyWrite(Object body,@NonNull MethodParameter returnType,@NonNull MediaType selectedContentType,@NonNull Class selectedConverterType, ServerHttpRequest request,@NonNull ServerHttpResponse response) {
         System.out.println("In beforeBodyWrite() method of " + getClass().getSimpleName());
 
         if (Objects.equals(request.getMethod(), HttpMethod.GET)) {

@@ -108,7 +108,7 @@ import org.springframework.stereotype.Component;
  * }
  *
  *
- * operate object under _embedded.address, operate one by one
+ * operate each object under _embedded.address
  */
 @Component
 public class AddressEntityProcessor implements RepresentationModelProcessor<EntityModel<Address>> {

@@ -17,7 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,10 +28,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static org.springframework.hateoas.MediaTypes.ALPS_JSON_VALUE;
 import static org.springframework.hateoas.mediatype.PropertyUtils.getExposedProperties;
 import static org.springframework.hateoas.mediatype.alps.Alps.doc;
-import static org.springframework.hateoas.mediatype.alps.Alps.ext;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @BasePathAwareController  // if base url exists, it needs to be added
@@ -92,15 +92,15 @@ public class AddressController {
      *
      * test transaction
      */
-    @Transactional(rollbackFor = {Exception.class})
+    @Transactional//(rollbackFor = {Exception.class})
     @PostMapping("/address/testTransaction")
-    public ResponseEntity<CollectionModel<EntityModel<Address>>> saveException(@RequestBody EntityModel<Bulk<Address>> bulk) throws SQLException {
+    public ResponseEntity<CollectionModel<EntityModel<Address>>> saveException(@RequestBody EntityModel<Bulk<Address>> bulk) {
         List<Address> data = Objects.requireNonNull(bulk.getContent()).getBulk();
 
         Address save = repo.save(data.get(0));
 
         if (save != null) {
-            throw new SQLException();
+            throw new Error();
         }
 
         Iterable<Address> addresses = repo.saveAll(data);

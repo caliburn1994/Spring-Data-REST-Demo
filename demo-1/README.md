@@ -22,13 +22,17 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
     - [x]  updated at && created at
     - [x] how long? big large?
   - [ ] CRUD
-  - [x] Insert
-    - [x] batch insert
+    - [x] Insert
+      - [x] insert
+      - [x] batch insert
     - [x] update
     - [ ] update if not found
-  - [ ] Key
+    - [x] query
+      - [x] page
+  - [x] Key
+    - [x] primary key
     - [x] foreign key
-  - [ ] transaction
+  - [x] transaction
 
 - [x] Documentation 
 
@@ -39,32 +43,11 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
   - [x] entity description. See: `rest-messages.properties`
   - [x] method description. See: `AllEntityBodyAdvice`
 
-- [ ] foreign key
-
-  - [x] create
-  
-- [ ] SQL语句
-
-  - [ ] join sentence
-  - [ ] 翻页查询
-
-- [ ] 事务
-
-- [ ] ```
-  _links
-  ```
-
 - [x] Show SQL in log file.
-
-- [x] primary key? what's difference every type
 
 - [ ] api version 1 version 2
 
-- [ ] page
-
-- [ ] RepositorySearchController
-
-- [ ] Unit Test
+- [x] Unit Test
 
 
 

@@ -20,17 +20,7 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
 
 
 
-    /*
-        test data:
-            curl -i -X POST  -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Tokyo" }'   		http://localhost:8080/api/v1/address
-            curl -i -X POST  -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Osaka" }'   		http://localhost:8080/api/v1/address
-            curl -i -X POST  -H "Content-Type:application/json" -d '  { "country" : "China" , "city" : "Guangzhou" }'    http://localhost:8080/api/v1/address
 
-
-            curl -i -X POST  -H "Content-Type:application/json" -d '  [{ "country" : "Japan" , "city" : "Tokyo" },{ "country" : "Japan" , "city" : "Osaka" }]'   \
-                    http://localhost:8080/api/v1/address
-
-         */
 
 
     // find...
@@ -49,10 +39,7 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
     // delete...
     // remove...
 
-    /*
-    by primary key:
-            curl -X DELETE http://localhost:8080/api/address/1
-     */
+
 
     /**
      *  delete with query style
@@ -72,13 +59,6 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
     @RestResource(description = @Description("test delete")) // todo not work
     @Override
     void delete(@NonNull Address entity);
-
-    /*
-    update
-        curl -X PUT -H "Content-Type:application/json" -d '{"postalCode": "555235"}' http://localhost:8080/api/address/2
-    update selectively
-        curl -X PUT -H "Content-Type:application/json" -d '{"postalCode": "555235", "city": "New York" , "country" : "America"}' http://localhost:8080/api/address/2
-    */
 
     /**
      * update with query style
