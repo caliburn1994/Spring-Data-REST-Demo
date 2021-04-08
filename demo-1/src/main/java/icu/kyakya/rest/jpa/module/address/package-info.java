@@ -30,7 +30,7 @@ DELETE
 
 /*
 UPDATE
-    curl -X PUT -H "Content-Type:application/json" -d '{"postalCode": "555235"}' http://localhost:8080/api/address/2
+    curl -X PUT -H "Content-Type:application/json" -d '{"postalCode": "555235"}' http://localhost:8080/api/v1/address/1
 update selectively
-    curl -X PUT -H "Content-Type:application/json" -d '{"postalCode": "555235", "city": "New York" , "country" : "America"}' http://localhost:8080/api/address/2
+    curl -X PATCH -H "Content-Type:application/json" -d '{"firstName": "Bilbo Jr."}' http://localhost:8080/api/v1/address/1
 */
