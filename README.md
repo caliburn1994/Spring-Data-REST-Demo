@@ -32,6 +32,33 @@ With this solution, we must create lots of handlers of controllers.
 GET /user/1
 GET /user/search/byName?name=xxx
 
+POST /user			-d '{"data": "value"}'   <<== redefine manually
+POST /user/search	-d '{"data": "value"}' 
+
+PUT  /user/1 -d '{"data": "value"}' 	<<== redefine manually
+POST /user/1 -d '{"data": "value"}' 	<<== redefine manually
+PUT  /user/search/byName?name=xxx -d '{"data": "value"}' 	
+POST /user/search/byName?name=xxx -d '{"data": "value"}' 	
+
+DELETE /user/1
+DELETE /user/search/byName?name=xxx	
+```
+
+```
+e.g:
+put /user/search ==> [filter]"search"=="search" ==> redirect createUpdateDelete/user/
+put /user/1      ==> [filter]     "1"!="search" ==> not do anything
+```
+
+1. set resources `exported=fasle` ,and then rewrite them.
+2. add controllers
+
+### Solution-3
+
+```
+GET /user/1
+GET /user/search/byName?name=xxx
+
 POST /user				-d '{"data": "value"}' 
 POST /user/batchAdd		-d '{"data": "value"}' 
 

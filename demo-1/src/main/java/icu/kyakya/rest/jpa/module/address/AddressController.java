@@ -21,16 +21,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static icu.kyakya.rest.jpa.config.Constants.TMP_SEARCH_PATH;
 import static org.springframework.hateoas.mediatype.PropertyUtils.getExposedProperties;
 import static org.springframework.hateoas.mediatype.alps.Alps.doc;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @BasePathAwareController  // if base url exists, it needs to be added
 @RepositoryRestController
@@ -87,9 +88,8 @@ public class AddressController {
     }
 
     /**
-     *
      * curl -i -X POST -H "Content-Type:application/json" -d  '{ "bulk": [ {"country" : "Japan" , "city" : "xxx1" }, {"country" : "Japan" , "city" : "xxx2" }]} '   http://localhost:8080/api/v1/address/testTransaction
-     *
+     * <p>
      * test transaction
      */
     @Transactional//(rollbackFor = {Exception.class})
@@ -114,16 +114,14 @@ public class AddressController {
     }
 
 
-
     /**
      * something like /profile/address
      *
      * @see <a href="https://docs.spring.io/spring-hateoas/docs/current/reference/html/#reference">spring-hateoas</a>
      * @see org.springframework.data.rest.webmvc.alps.AlpsController#descriptor(RootResourceInformation)
-     *
      */
     @RequestMapping(value = "/profile/address/add", method = GET,
-            produces = { MediaType.ALL_VALUE, MediaTypes.ALPS_JSON_VALUE })
+            produces = {MediaType.ALL_VALUE, MediaTypes.ALPS_JSON_VALUE})
     public HttpEntity<?> docAdd() {
         Alps build = Alps.alps() //
                 .doc(doc() //
@@ -151,4 +149,10 @@ public class AddressController {
     }
 
 
+    @RequestMapping(value = "/" + TMP_SEARCH_PATH + "/address", method = PUT,
+            produces = {MediaType.ALL_VALUE, MediaTypes.ALPS_JSON_VALUE})
+    public HttpEntity<?> testPut() {
+        // do something
+        return ResponseEntity.noContent().build();
+    }
 }
