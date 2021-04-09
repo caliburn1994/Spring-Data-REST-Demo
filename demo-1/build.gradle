@@ -1,5 +1,5 @@
 buildscript {
-    apply from: 'https://raw.githubusercontent.com/caliburn1994/Spring-Data-REST-Demo/main/config/buildScript.gradle'
+    apply from: 'https://raw.githubusercontent.com/caliburn1994/Config/main/gradle/buildScript.gradle'
 }
 
 plugins {
@@ -67,4 +67,4 @@ bootJar {
     }
 }
 
-apply from: 'https://raw.githubusercontent.com/caliburn1994/Spring-Data-REST-Demo/main/config/end.gradle'
+apply from: 'https://raw.githubusercontent.com/caliburn1994/Config/main/gradle/end.gradle'
