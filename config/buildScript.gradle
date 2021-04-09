@@ -30,6 +30,7 @@ eclipse.classpath.downloadSources = true
 wrapper {
     jarFile = file(System.getProperty("user.dir") + '/gradle/wrapper/gradle-wrapper.jar')
     gradleVersion = '6.7.1'
+    distributionType = Wrapper.DistributionType.ALL
 }
 
 
