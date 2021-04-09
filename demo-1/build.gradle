@@ -1,5 +1,5 @@
 buildscript {
-    apply from: 'https://raw.githubusercontent.com/caliburn1994/Spring-Data-REST-Demo/main/config/common.gradle'
+    apply from: 'https://raw.githubusercontent.com/caliburn1994/Spring-Data-REST-Demo/main/config/buildScript.gradle'
 }
 
 plugins {
@@ -62,7 +62,9 @@ asciidoctor {
 // put documentation into jar
 bootJar {
     dependsOn asciidoctor
-    from ("${asciidoctor.outputDir}/html5") {
+    from("${asciidoctor.outputDir}/html5") {
         into 'static/docs'
     }
 }
+
+apply from: 'https://raw.githubusercontent.com/caliburn1994/Spring-Data-REST-Demo/main/config/end.gradle'
