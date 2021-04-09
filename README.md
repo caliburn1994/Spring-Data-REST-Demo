@@ -1,6 +1,6 @@
 ## Demos
 
-[demo-1](./demo-1) is a RESTful Web Service , based on [Spring Data Rest](https://spring.io/projects/spring-data-rest), [Spring Rest Doc](https://spring.io/projects/spring-restdocs). And the database is Postgresql. The project exposes operations of Database.
+[demo-1](demo-2-redis) is a RESTful Web Service , based on [Spring Data Rest](https://spring.io/projects/spring-data-rest), [Spring Rest Doc](https://spring.io/projects/spring-restdocs). And the database is Postgresql. The project exposes operations of Database.
 
 ## About Batch CRUD
 
