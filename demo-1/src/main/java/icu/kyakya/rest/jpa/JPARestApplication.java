@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.env.YamlPropertySourceLoader;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @SpringBootApplication
 @Slf4j
+@EnableCaching
 public class JPARestApplication {
 
     public static void main(String[] args) throws IOException {
