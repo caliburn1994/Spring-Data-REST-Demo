@@ -1,5 +1,0 @@
-if (!System.getProperty("java.home").contains(java.toolchain.languageVersion.get().toString())) {
-    def msg = ('JDK in this project: ' + System.getProperty('java.home') + '\n' +
-            'In this project, you should use JDK-' + java.toolchain.languageVersion.get())
-    throw new GradleException(msg)
-}
