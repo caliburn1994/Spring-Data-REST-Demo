@@ -77,7 +77,7 @@ No need to do anything.
 
 questions:
 
-- version  https://stackoverflow.com/questions/20198275/how-to-manage-rest-api-versioning-with-spring
-- security 
-- @CrossOrigin
-
+- [ ] version  https://stackoverflow.com/questions/20198275/how-to-manage-rest-api-versioning-with-spring
+- [ ] security 
+- [ ] @CrossOrigin
+- [ ] 404 page or others
