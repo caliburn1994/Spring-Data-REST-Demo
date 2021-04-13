@@ -81,3 +81,5 @@ questions:
 - [ ] security 
 - [ ] @CrossOrigin
 - [ ] 404 page or others
+- [ ] Redis
+  - [ ] delete,update,create ,  will the `cachable` changed?
